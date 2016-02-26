@@ -7,16 +7,31 @@
 //
 
 #import "AppDelegate.h"
+//ViewController
+#import "ViewController.h"
+//Push
+#import "NavigationControllerDelegate.h"
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
-
+@implementation AppDelegate {
+    UIWindow *_window;
+    NavigationControllerDelegate *_navigationDelegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    _window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    _navigationDelegate = [[NavigationControllerDelegate alloc] initWithNawigationController:navigationController];
+    navigationController.delegate = _navigationDelegate;
+    _window.rootViewController = navigationController;
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [_window makeKeyAndVisible];
+    
     return YES;
 }
 

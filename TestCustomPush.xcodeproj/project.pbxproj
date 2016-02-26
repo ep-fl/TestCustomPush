@@ -10,9 +10,10 @@
 		649644EC1C80495F00A5E5F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 649644EB1C80495F00A5E5F9 /* main.m */; };
 		649644EF1C80495F00A5E5F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 649644EE1C80495F00A5E5F9 /* AppDelegate.m */; };
 		649644F21C80495F00A5E5F9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 649644F11C80495F00A5E5F9 /* ViewController.m */; };
-		649644F51C80495F00A5E5F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 649644F31C80495F00A5E5F9 /* Main.storyboard */; };
 		649644F71C80495F00A5E5F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 649644F61C80495F00A5E5F9 /* Assets.xcassets */; };
 		649644FA1C80495F00A5E5F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 649644F81C80495F00A5E5F9 /* LaunchScreen.storyboard */; };
+		649645111C80959800A5E5F9 /* AnimationScaleToCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6496450E1C80959800A5E5F9 /* AnimationScaleToCenter.m */; };
+		649645121C80959800A5E5F9 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 649645101C80959800A5E5F9 /* NavigationControllerDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +23,13 @@
 		649644EE1C80495F00A5E5F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		649644F01C80495F00A5E5F9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		649644F11C80495F00A5E5F9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		649644F41C80495F00A5E5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		649644F61C80495F00A5E5F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		649644F91C80495F00A5E5F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		649644FB1C80495F00A5E5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6496450D1C80959800A5E5F9 /* AnimationScaleToCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationScaleToCenter.h; sourceTree = "<group>"; };
+		6496450E1C80959800A5E5F9 /* AnimationScaleToCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationScaleToCenter.m; sourceTree = "<group>"; };
+		6496450F1C80959800A5E5F9 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
+		649645101C80959800A5E5F9 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +66,7 @@
 				649644EE1C80495F00A5E5F9 /* AppDelegate.m */,
 				649644F01C80495F00A5E5F9 /* ViewController.h */,
 				649644F11C80495F00A5E5F9 /* ViewController.m */,
-				649644F31C80495F00A5E5F9 /* Main.storyboard */,
-				649644F61C80495F00A5E5F9 /* Assets.xcassets */,
-				649644F81C80495F00A5E5F9 /* LaunchScreen.storyboard */,
-				649644FB1C80495F00A5E5F9 /* Info.plist */,
+				6496450B1C80959800A5E5F9 /* CustomNavigation */,
 				649644EA1C80495F00A5E5F9 /* Supporting Files */,
 			);
 			path = TestCustomPush;
@@ -74,9 +75,31 @@
 		649644EA1C80495F00A5E5F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				649644F61C80495F00A5E5F9 /* Assets.xcassets */,
+				649644F81C80495F00A5E5F9 /* LaunchScreen.storyboard */,
+				649644FB1C80495F00A5E5F9 /* Info.plist */,
 				649644EB1C80495F00A5E5F9 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6496450B1C80959800A5E5F9 /* CustomNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				6496450C1C80959800A5E5F9 /* Animations */,
+				6496450F1C80959800A5E5F9 /* NavigationControllerDelegate.h */,
+				649645101C80959800A5E5F9 /* NavigationControllerDelegate.m */,
+			);
+			path = CustomNavigation;
+			sourceTree = "<group>";
+		};
+		6496450C1C80959800A5E5F9 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				6496450D1C80959800A5E5F9 /* AnimationScaleToCenter.h */,
+				6496450E1C80959800A5E5F9 /* AnimationScaleToCenter.m */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +161,6 @@
 			files = (
 				649644FA1C80495F00A5E5F9 /* LaunchScreen.storyboard in Resources */,
 				649644F71C80495F00A5E5F9 /* Assets.xcassets in Resources */,
-				649644F51C80495F00A5E5F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,21 +173,15 @@
 			files = (
 				649644F21C80495F00A5E5F9 /* ViewController.m in Sources */,
 				649644EF1C80495F00A5E5F9 /* AppDelegate.m in Sources */,
+				649645121C80959800A5E5F9 /* NavigationControllerDelegate.m in Sources */,
 				649644EC1C80495F00A5E5F9 /* main.m in Sources */,
+				649645111C80959800A5E5F9 /* AnimationScaleToCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		649644F31C80495F00A5E5F9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				649644F41C80495F00A5E5F9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		649644F81C80495F00A5E5F9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -300,6 +316,7 @@
 				649645001C80495F00A5E5F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
