@@ -24,15 +24,24 @@
     CGFloat yDefaultPush = 90;
     
     [self.view addSubview:[self buttonWithPoint:CGPointMake(x, yDefaultPush) title:@"defaultPush" selector:@selector(defaultPush)]];
+    [self.view addSubview:self.viewForTransform];
 }
 
 #pragma mark - Actions
 
 -(void)defaultPush {
-    [self.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
+    UIViewController *vc = [[ViewController alloc] init];
+    vc.view.backgroundColor = [UIColor greenColor];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UI
+
+-(UIView *)viewForTransform {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView)];
+    view.backgroundColor = [UIColor greenColor];
+    return view;
+}
 
 -(UIButton *)buttonWithPoint:(CGPoint)point title:(NSString *)title selector:(SEL)selector {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];

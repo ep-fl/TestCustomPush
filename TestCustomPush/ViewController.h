@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define heightBottomView 150.0
+
 @interface ViewController : UIViewController
 
 

@@ -7,42 +7,34 @@
 //
 
 #import "NavigationControllerDelegate.h"
-#import "Animations/AnimationScaleToCenter.h"
+#import "Animations/Animation.h"
 
 @interface NavigationControllerDelegate()
 @property(nonatomic, weak) UINavigationController *navigationController;
 @property(nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
 @end
 
-@implementation NavigationControllerDelegate {
-    AnimationScaleToCenter *_animationScaleToCenter;
-}
+@implementation NavigationControllerDelegate
 
 -(instancetype)initWithNawigationController:(UINavigationController *)navigationController {
     if (self = [super init]) {
-        _animationScaleToCenter = [[AnimationScaleToCenter alloc] init];
         
         _navigationController = navigationController;
-        
-        UIPanGestureRecognizer* panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-        [_navigationController.view addGestureRecognizer:panRecognizer];
+
+//        [_navigationController.view addGestureRecognizer:self.panPopRecognizer];
     } return self;
 }
 
 #pragma mark - UINavigationControllerDelegate
-
--(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
-}
 
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                  animationControllerForOperation:(UINavigationControllerOperation)operation
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC {
     if (operation == UINavigationControllerOperationPop) {
-        return _animationScaleToCenter;
+//        return [[AnimationPopScaleToCenter alloc] init];;
     } else if (operation == UINavigationControllerOperationPush) {
-        
+        return [[AnimationPush alloc] init];
     }
     
     return nil;
@@ -54,7 +46,13 @@
     return self.interactionController;
 }
 
-- (void)pan:(UIPanGestureRecognizer*)recognizer {
+#pragma mark - Pan Pop
+
+-(UIPanGestureRecognizer *)panPopRecognizer {
+    return [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pop:)];
+}
+
+- (void)pop:(UIPanGestureRecognizer*)recognizer {
     UIView *view = self.navigationController.view;
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         if (self.navigationController.viewControllers.count > 1) {
