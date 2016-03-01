@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 //ViewController
 #import "ViewController.h"
-//Push
-#import "NavigationControllerDelegate.h"
 
 @interface AppDelegate ()
 
@@ -29,10 +27,15 @@
     _navigationDelegate = [[NavigationControllerDelegate alloc] initWithNawigationController:navigationController];
     navigationController.delegate = _navigationDelegate;
     _window.rootViewController = navigationController;
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [_window makeKeyAndVisible];
     
     return YES;
+}
+
+-(NavigationControllerDelegate *)navigationDelegate {
+    return _navigationDelegate;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

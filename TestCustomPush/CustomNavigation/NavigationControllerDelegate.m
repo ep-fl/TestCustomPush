@@ -14,14 +14,13 @@
 @property(nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
 @end
 
-@implementation NavigationControllerDelegate
+@implementation NavigationControllerDelegate {
+    CGPoint _panCoordinate;
+}
 
 -(instancetype)initWithNawigationController:(UINavigationController *)navigationController {
     if (self = [super init]) {
-        
         _navigationController = navigationController;
-
-//        [_navigationController.view addGestureRecognizer:self.panPopRecognizer];
     } return self;
 }
 
@@ -46,6 +45,46 @@
     return self.interactionController;
 }
 
+#pragma mark - Pan Push
+
+-(void)viewToAddPan:(UIView *)view {
+    [view addGestureRecognizer:self.panPopRecognizer];
+}
+
+-(UIPanGestureRecognizer *)panPopRecognizer {
+    return [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panPush:)];
+}
+
+- (void)panPush:(UIPanGestureRecognizer*)recognizer {
+    UIView *view = recognizer.view;
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        self.interactionController = [UIPercentDrivenInteractiveTransition new];
+        
+        _panCoordinate = [recognizer locationInView:view];
+        
+    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        
+        CGPoint newCoord = [recognizer locationInView:view];
+        CGFloat newY = _panCoordinate.y - newCoord.y;
+        
+        if (newY > heightBottomView || newY < CGRectGetHeight(UIScreen.mainScreen.bounds)) {
+            CGFloat newHeight = CGRectGetHeight(view.frame) + newY;
+            recognizer.view.frame = CGRectMake(0, recognizer.view.frame.origin.y - newY, recognizer.view.frame.size.width, newHeight);
+        }
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        CGFloat yPoint = fabs([recognizer velocityInView:view].y);
+        if (yPoint > 12) {
+            [self.interactionController finishInteractiveTransition];
+        } else {
+            view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
+            [self.interactionController cancelInteractiveTransition];
+        }
+        self.interactionController = nil;
+    }
+}
+
+/*
 #pragma mark - Pan Pop
 
 -(UIPanGestureRecognizer *)panPopRecognizer {
@@ -75,5 +114,6 @@
         self.interactionController = nil;
     }
 }
+*/
 
 @end

@@ -10,4 +10,6 @@
 
 @interface NavigationControllerDelegate : NSObject<UINavigationControllerDelegate>
 -(instancetype)initWithNawigationController:(UINavigationController *)navigationController;
+
+-(void)viewToAddPan:(UIView *)view;
 @end

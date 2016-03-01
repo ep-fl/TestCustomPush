@@ -31,8 +31,6 @@
 
 @end
 
-#import "ViewController.h"
-
 @implementation AnimationPush
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -40,25 +38,26 @@
 }
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-
-    toViewController.view.alpha = 0;
-    toViewController.view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
-    [[transitionContext containerView] addSubview:toViewController.view];
-
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView = [transitionContext containerView];
+    
+    toVC.view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
+    toVC.view.alpha = 0;
+    [containerView addSubview:toVC.view];
+    
+    CGAffineTransform xForm = toVC.view.transform;
+    
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        toViewController.view.alpha = 0.1;
-//        toViewController.view.transform = CGAffineTransformMakeTranslation(1.1, 1);
-//        toViewController.view.transform = CGAffineTransformMakeScale(1, 1);
-        toViewController.view.transform = CGAffineTransformTranslate(toViewController.view.transform, CGRectGetWidth(UIScreen.mainScreen.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds));
+        toVC.view.alpha = 1;
+        toVC.view.transform = CGAffineTransformScale(xForm, 1, 1);
+        
+        toVC.view.frame = UIScreen.mainScreen.bounds;
+        toVC.view.transform = CGAffineTransformMakeTranslation(1, 1);
     } completion:^(BOOL finished) {
-        toViewController.view.frame = UIScreen.mainScreen.bounds;
-        
-        fromViewController.view.transform = CGAffineTransformIdentity;
-        
-        toViewController.view.alpha = 1;
-        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        toVC.view.frame = UIScreen.mainScreen.bounds;
+        fromVC.view.transform = CGAffineTransformScale(xForm, 1, 1);
+        [transitionContext completeTransition:YES];
     }];
 }
 
