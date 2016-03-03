@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Animations/Animation.h"
 
 @interface NavigationControllerDelegate : NSObject<UINavigationControllerDelegate>
 -(instancetype)initWithNawigationController:(UINavigationController *)navigationController;

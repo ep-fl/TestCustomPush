@@ -14,28 +14,17 @@
 
 @end
 
-@implementation AppDelegate {
-    UIWindow *_window;
-    NavigationControllerDelegate *_navigationDelegate;
-}
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     _window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
-    _navigationDelegate = [[NavigationControllerDelegate alloc] initWithNawigationController:navigationController];
-    navigationController.delegate = _navigationDelegate;
-    _window.rootViewController = navigationController;
+    _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [_window makeKeyAndVisible];
     
     return YES;
-}
-
--(NavigationControllerDelegate *)navigationDelegate {
-    return _navigationDelegate;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

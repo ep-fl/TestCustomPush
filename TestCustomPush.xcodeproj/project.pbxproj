@@ -14,6 +14,8 @@
 		649644FA1C80495F00A5E5F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 649644F81C80495F00A5E5F9 /* LaunchScreen.storyboard */; };
 		649645111C80959800A5E5F9 /* Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6496450E1C80959800A5E5F9 /* Animation.m */; };
 		649645121C80959800A5E5F9 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 649645101C80959800A5E5F9 /* NavigationControllerDelegate.m */; };
+		64F52B291C857EAB00A1AE3C /* ViewControllerWithPan.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F52B281C857EAB00A1AE3C /* ViewControllerWithPan.m */; };
+		64F57EA41C88744300D019BA /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F57EA31C88744300D019BA /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,10 @@
 		6496450E1C80959800A5E5F9 /* Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animation.m; sourceTree = "<group>"; };
 		6496450F1C80959800A5E5F9 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
 		649645101C80959800A5E5F9 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
+		64F52B271C857EAB00A1AE3C /* ViewControllerWithPan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerWithPan.h; sourceTree = "<group>"; };
+		64F52B281C857EAB00A1AE3C /* ViewControllerWithPan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerWithPan.m; sourceTree = "<group>"; };
+		64F57EA21C88744300D019BA /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		64F57EA31C88744300D019BA /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,8 @@
 				649644EE1C80495F00A5E5F9 /* AppDelegate.m */,
 				649644F01C80495F00A5E5F9 /* ViewController.h */,
 				649644F11C80495F00A5E5F9 /* ViewController.m */,
+				64F52B271C857EAB00A1AE3C /* ViewControllerWithPan.h */,
+				64F52B281C857EAB00A1AE3C /* ViewControllerWithPan.m */,
 				6496450B1C80959800A5E5F9 /* CustomNavigation */,
 				649644EA1C80495F00A5E5F9 /* Supporting Files */,
 			);
@@ -89,6 +97,8 @@
 				6496450C1C80959800A5E5F9 /* Animations */,
 				6496450F1C80959800A5E5F9 /* NavigationControllerDelegate.h */,
 				649645101C80959800A5E5F9 /* NavigationControllerDelegate.m */,
+				64F57EA21C88744300D019BA /* BaseViewController.h */,
+				64F57EA31C88744300D019BA /* BaseViewController.m */,
 			);
 			path = CustomNavigation;
 			sourceTree = "<group>";
@@ -171,10 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64F52B291C857EAB00A1AE3C /* ViewControllerWithPan.m in Sources */,
 				649644F21C80495F00A5E5F9 /* ViewController.m in Sources */,
 				649644EF1C80495F00A5E5F9 /* AppDelegate.m in Sources */,
 				649645121C80959800A5E5F9 /* NavigationControllerDelegate.m in Sources */,
 				649644EC1C80495F00A5E5F9 /* main.m in Sources */,
+				64F57EA41C88744300D019BA /* BaseViewController.m in Sources */,
 				649645111C80959800A5E5F9 /* Animation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +292,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestCustomPush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = by.TestCustomPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -291,6 +304,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestCustomPush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = by.TestCustomPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";

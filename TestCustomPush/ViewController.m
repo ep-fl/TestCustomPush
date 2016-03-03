@@ -7,11 +7,8 @@
 //
 
 #import "ViewController.h"
-//
+//Push
 #import "ViewControllerWithPan.h"
-//CustomPush
-#import "AppDelegate.h"
-#import "NavigationControllerDelegate.h"
 
 #define button_height 25
 
@@ -32,17 +29,19 @@
     
     UIView *view = [self viewForTransform];
     [self.view addSubview:view];
-    
-    AppDelegate *appDelegate = ((AppDelegate*)[UIApplication sharedApplication].delegate);
-    [appDelegate.navigationDelegate viewToAddPan:view];
+    [super viewWithPanGesturePush:view];
 }
 
 #pragma mark - Actions
 
 -(void)defaultPush {
-    UIViewController *vc = [[ViewControllerWithPan alloc] init];
-    vc.view.backgroundColor = [UIColor greenColor];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:self.viewControllerToPush animated:YES];
+}
+
+#pragma mark - BasePanToPush
+
+-(UIViewController *)viewControllerToPush {
+    return [[ViewControllerWithPan alloc] init];
 }
 
 #pragma mark - UI

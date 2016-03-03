@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-//CustomPush
-#import "NavigationControllerDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (readonly, nonatomic) NavigationControllerDelegate *navigationDelegate;
 
 @end
 

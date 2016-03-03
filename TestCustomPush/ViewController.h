@@ -6,12 +6,11 @@
 //  Copyright © 2016 LWO LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 #define heightBottomView 150.0
 
-@interface ViewController : UIViewController
-
+@interface ViewController : BaseViewController
 
 @end
 
