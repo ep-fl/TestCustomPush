@@ -31,7 +31,15 @@
 
 @end
 
-@implementation AnimationPush
+@implementation AnimationPush {
+    CGFloat _yCoordinate;
+}
+
+-(instancetype)initFromYcoordinate:(CGFloat)yCoordinate {
+    if (self = [super init]) {
+        _yCoordinate = yCoordinate;
+    } return self;
+}
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 0.5;
@@ -42,7 +50,7 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
     
-    toVC.view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
+    toVC.view.frame = CGRectMake(0, _yCoordinate, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
     toVC.view.alpha = 0;
     [containerView addSubview:toVC.view];
     

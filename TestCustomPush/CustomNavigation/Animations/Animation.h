@@ -15,5 +15,5 @@
 #import "ViewController.h"
 
 @interface AnimationPush : NSObject<UIViewControllerAnimatedTransitioning>
-
+-(instancetype)initFromYcoordinate:(CGFloat)yCoordinate;
 @end

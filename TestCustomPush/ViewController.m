@@ -49,6 +49,7 @@
 -(UIView *)viewForTransform {
     UIView *view = [[ViewControllerWithPan alloc] init].view;
     view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
+    view.backgroundColor = [UIColor greenColor];
     return view;
 }
 

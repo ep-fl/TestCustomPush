@@ -16,11 +16,14 @@
 
 @implementation BaseViewController {
     CGPoint _panCoordinate;
+    CGFloat _yCoordinateToPush;
+    UIViewController *_viewControllerToAdd;
 }
 
 -(void)loadView {
     [super loadView];
     self.navigationController.delegate = self;
+    _yCoordinateToPush = CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView;
 }
 
 #pragma mark - UINavigationControllerDelegate
@@ -32,7 +35,7 @@
     if (operation == UINavigationControllerOperationPop) {
 //        return [[AnimationPopScaleToCenter alloc] init];;
     } else if (operation == UINavigationControllerOperationPush) {
-        return [[AnimationPush alloc] init];
+        return [[AnimationPush alloc] initFromYcoordinate:_yCoordinateToPush];
     }
     
     return nil;
@@ -61,24 +64,32 @@
         self.interactionController = [UIPercentDrivenInteractiveTransition new];
         
         _panCoordinate = [recognizer locationInView:view];
+
+        CGFloat yTranslation = [recognizer translationInView:recognizer.view].y;
+        if (yTranslation < 0) {
+            _viewControllerToAdd = [self viewControllerToPush];
+            _viewControllerToAdd.view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
+            [self.view addSubview:_viewControllerToAdd.view];
+        }
         
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        
         CGPoint newCoord = [recognizer locationInView:view];
         CGFloat newY = _panCoordinate.y - newCoord.y;
+        CGFloat newHeight = CGRectGetHeight(view.frame) + newY;
+
+        _yCoordinateToPush = recognizer.view.frame.origin.y - newY;
+        _viewControllerToAdd.view.frame = CGRectMake(0, _yCoordinateToPush, recognizer.view.frame.size.width, newHeight);
         
-        if (newY > heightBottomView || newY < CGRectGetHeight(UIScreen.mainScreen.bounds)) {
-            CGFloat newHeight = CGRectGetHeight(view.frame) + newY;
-            recognizer.view.frame = CGRectMake(0, recognizer.view.frame.origin.y - newY, recognizer.view.frame.size.width, newHeight);
-        }
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        CGFloat yPoint = fabs([recognizer velocityInView:view].y);
-        if (yPoint > 12) {
+        
+        if ([recognizer velocityInView:view].x > 0) {
+            [self.navigationController pushViewController:_viewControllerToAdd animated:YES];
             [self.interactionController finishInteractiveTransition];
         } else {
-            view.frame = CGRectMake(0, CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
             [self.interactionController cancelInteractiveTransition];
         }
+//        [_viewControllerToAdd.view removeFromSuperview];
+//        _yCoordinateToPush = CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView;
         self.interactionController = nil;
     }
 }
