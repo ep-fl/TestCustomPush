@@ -33,7 +33,7 @@
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC {
     if (operation == UINavigationControllerOperationPop) {
-//        return [[AnimationPopScaleToCenter alloc] init];;
+//        return [[AnimationPopScaleToCenter alloc] init];
     } else if (operation == UINavigationControllerOperationPush) {
         return [[AnimationPush alloc] initFromYcoordinate:_yCoordinateToPush];
     }
@@ -87,9 +87,20 @@
             [self.interactionController finishInteractiveTransition];
         } else {
             [self.interactionController cancelInteractiveTransition];
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                CGRect r = _viewControllerToAdd.view.frame;
+                r.origin.y = CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView;
+                r.size.height = heightBottomView;
+                _viewControllerToAdd.view.frame = r;
+                _viewControllerToAdd.view.alpha = 0.3;
+            } completion:^(BOOL finished) {
+                [_viewControllerToAdd.view removeFromSuperview];
+            }];
         }
-//        [_viewControllerToAdd.view removeFromSuperview];
-//        _yCoordinateToPush = CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView;
+        
+        _yCoordinateToPush = CGRectGetHeight(UIScreen.mainScreen.bounds) - heightBottomView;
+        
         self.interactionController = nil;
     }
 }

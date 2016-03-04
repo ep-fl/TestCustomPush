@@ -50,8 +50,11 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
     
-    toVC.view.frame = CGRectMake(0, _yCoordinate, CGRectGetWidth(UIScreen.mainScreen.bounds), heightBottomView);
-    toVC.view.alpha = 0;
+    CGRect r = toVC.view.frame;
+    r.origin.y = _yCoordinate;
+    toVC.view.frame = r;
+    
+//    toVC.view.alpha = 0;
     [containerView addSubview:toVC.view];
     
     CGAffineTransform xForm = toVC.view.transform;
